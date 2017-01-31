@@ -1,0 +1,529 @@
+normalize-css()
+
+trans($sec = 1s)
+    transition: all $sec ease
+// Material Shadows
+shadow-level(l = 1)
+    if l == -1
+        box-shadow: inset -2px 7px 9px -7px rgba(0,0,0,0.7);
+    if l == 0
+        box-shadow: none;
+    if l == 1
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    if l == 2
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    if l == 3
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    if l == 4
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    if l == 5
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+
+z = {
+    neg: -7,
+    lowest: 1,
+    low: 4,
+    mid: 5,
+    video: 6,
+    header: 7,
+    nav: 8,
+    mini: 9,
+    modal: 10,
+    highest: 11
+}
+// Colors
+black = #222
+grey = #D8D8D8
+light-grey = #EEE
+purp = #524763
+$dark-purp = #373142
+red = #E54B4B
+teal = #82D8D8
+dark-teal = #66A6A6
+green = #CBE56C
+blue = #16528E
+bright-blue = #0082C8
+maroon = #6A2140
+light-red = #CA5765
+pink = #CF256D
+orange = #E8846B
+dark-grey = #444444
+$font-color = #003366
+
+// Grid
+$xsmall = 340px
+$small = 500px
+$med = 700px
+$large = 960px
+$wide = 1200px
+
+html
+    box-sizing: border-box
+
+*, *:before, *:after
+    box-sizing: inherit
+
+body
+    background light-grey
+    // padding: 70px 0 150px
+    font-family: 'Open Sans', sans-serif
+
+
+// Main nav
+
+
+    
+header
+    opacity 0.8
+    color #fff
+    background: rgba(255,255,255,0.8)
+    padding: 10px 5%
+    fixed top left
+    width 100%
+    border-radius: 0 0 10px 10px
+    height 60px;
+    z-index: z.header
+    shadow-level(2)
+    clearfix()
+    +below($large)
+        opacity 1
+    nav 
+        text-align center
+        a
+            color: black
+            text-decoration: none
+            margin-left 30px
+            font-size 1.2em
+            line-height 36px
+            display: inline-block
+            border-bottom 2px solid transparent
+            trans()
+            +below($large)
+                display: block
+                text-align: center
+                border-bottom 3px solid grey
+                padding 10px
+                margin-left 0px
+                
+            &:hover 
+                color teal
+                border-color black
+                
+
+.links
+    background-color rgba(255,255,255,1)
+    position absolute
+    left 0
+    width 100vw
+    height 0px
+    border-radius: 0 0 20px 20px
+    trans()
+    +below($large)
+        top 50px
+        padding 0 50px
+        margin-right 0px
+        overflow:hidden;
+.active
+    display:block
+    height 240px
+    
+
+
+
+
+
+.toggle
+    position absolute
+    width 40px
+    height 40px
+    padding 10px
+    top 10px
+    float left
+    background-color: teal
+    border-radius: 6px
+    cursor pointer
+    display: none
+    +below($large)
+        display: block
+    span
+        width 100%
+        height 4px
+        background-color: white
+        display: block
+        margin-bottom 3px
+// ImagesPlayer
+
+.images-player 
+    position relative
+    width 100vw
+    height 100vh
+    clearfix()
+    > div 
+        position absolute
+        background-size: cover
+        background-position: center center
+        min-width 100%
+        height 100%
+        background-repeat: no-repeat
+        trans()
+
+.slide-back
+    width 50%
+    height 100%
+    background:transparent
+    display inline-block
+    float left
+    cursor pointer
+    &:hover
+        background: linear-gradient(to right,rgba(0,0,0,0.5) 10%,rgba(0,0,0,0) 20%)
+        +below($large)
+            background:transparent
+.slide-next
+    width 50%
+    height 100%
+    background:transparent
+    display inline-block
+    float right 
+    cursor pointer
+    &:hover
+        background: linear-gradient(to left,rgba(0,0,0,0.5) 10%,rgba(0,0,0,0) 20%)
+        +below($large)
+            background:transparent
+.slide-list
+    position: absolute;
+    bottom:70px;
+    left:45%;
+    div
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        float: left;
+        margin-right:10px;
+        trans();
+        border:1.25px solid #fff;
+    .active
+        background: #505050;
+
+.fadeIn
+    opacity 1
+
+.fadeOut
+    opacity 0
+
+//footer
+
+.footer
+    width 100%
+    opacity: 0.8
+    position fixed
+    padding 10px 
+    text-align center
+    font-size 0.8em
+    color black
+    background-color: #bbb
+    display: flex
+    align-content: center
+    justify-content flex-end
+    bottom 0
+    &:hover
+        opacity 1
+    +below($large)
+        opacity 1
+    
+    
+
+.copyright 
+    display: flex
+    align-items center
+    position: absolute
+    left 10px
+    top 15px
+    +below($large)
+        display: none
+    i
+        font-size 2em
+
+.social-contain
+    display: flex
+    +below($large)
+        width 50%
+        display: flex
+        justify-content: space-around
+        border-right 2px solid black
+
+
+.social
+    width 40px
+    height 40px
+    margin 0 20px
+    line-height 40px
+    font-size 35px
+    text-align center
+    border-radius: 50%
+    background-color: #eee
+    +below($large)
+        margin 0 10px
+    i
+        color #bbb
+        trans(0.3s)
+        &:hover
+            color:#59d
+            cursor pointer
+.phone
+    font-size 1rem
+    width 200px
+    display: flex
+    align-items center
+    +below($large)
+        width 50%
+        display: flex
+        font-size 0.9em
+        justify-content: center
+        font-size 0
+// Album Cards 
+
+.cards
+    padding 1.5%
+    column-width 320px
+    column-gap: 15px
+    column-count: auto
+    flex-direction: row
+    margin-bottom 60px
+
+.cardLoad-enter {
+    opacity: 0
+    animation: scaleIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
+}
+
+.cardLoad-leave {
+    animation: scaleOut 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
+    opacity: 1.0
+}
+    
+.card    
+    display: inline-block
+    reset-link()
+    max-width 320px
+    position relative
+    margin-bottom 20px
+    margin 10px 5px
+    padding-bottom 30px
+    color $font-color
+    height 100%
+    background-color: light-grey
+    shadow-level(2)
+    trans(0.3s)
+    border-radius: 6px
+    &:hover
+        shadow-level(3)
+        .card-meta
+            height 1em
+    span
+        display block
+    .card-summary
+        padding 5% 5% 3% 5%
+    +below($med)
+        max-width 100%
+        margin-right 0
+        .card-meta
+            height 1em
+
+    
+
+.card-header
+    width 320px
+    min-height 100%
+    background-size: cover
+    background-position: center
+    background-repeat: no-repeat
+    position relative
+    background-color: rgba(white, .2)
+    background-blend-mode: overlay
+    trans(0.5s)
+    img
+        width 100%
+    +below($med)
+        width 100%
+    &:hover
+        background-color: rgba(white,0)
+
+.card-title
+    padding 3.5% 0 2.5% 0
+    color white
+    text-transform: uppercase
+    width 100%
+    background-color: #66CCCC
+    h3
+        font-size 1.2em
+        line-height: 1.2
+        padding 0 3.5%
+        margin 0
+        text-align center
+
+.card-meta
+    height 0
+    overflow hidden
+    color #003366
+    font-size .75em
+    text-transform: uppercase
+    position absolute
+    bottom 3%
+    padding 0 5%
+    trans(0.4s)
+
+.category
+    display flex
+    justify-content center
+
+.btn
+    reset-link()
+    position: relative;
+    corsor pointer
+    color $font-color
+    display inline-block
+    font-size 16px
+    line-height 45px
+    margin-top 70px
+    width 100%
+    max-width 160px
+    letter-spacing 0
+    border 0px
+    text-align center
+    trans(0.5s)
+    &:hover
+        letter-spacing 5px
+        &:after, &:before
+            border-color black
+            width 70%
+
+    &:after , &:before
+        border 1px solid rgba(#fff, 1)
+        content ""
+        display block
+        margin 0 auto
+        position relative
+        width 0
+        trans()
+
+.cate-active
+    letter-spacing 5px
+    &:after , &:before
+        border 1px solid rgba(#000, 1)
+        content ""
+        display block
+        margin 0 auto
+        position relative
+        width 70%
+
+//photoList
+
+.photo-contain
+    margin-top 60px
+    margin-bottom 60px
+    color $font-color
+    lost-center 85%
+    display: flex
+    justify-content center
+    flex-wrap wrap
+    text-align center
+    +below($large)
+        lost-center 90%
+
+
+.Photo-Header
+    width 100%
+    > span
+        display: flex
+        justify-content flex-start
+    > p
+        margin 30px 0px
+.gallery 
+    margin-top 10px
+    margin-bottom 60px
+    column-width 320px
+    column-gap: 15px
+    column-count: auto
+    img
+        width 320
+
+.photo
+    width 320px
+    margin-bottom 10px
+
+//
+
+.contcat-container
+    lost-center 80%
+    margin-top 80px
+    margin-bottom 60px
+    text-align center
+
+//  admin
+
+.admin-contain
+    margin-top:100px
+    text-align center
+    lost-center 90%
+
+.select-style
+    display:inline-block
+    padding 0
+    margin-left 50px
+    border 1px solid #ccc
+    width 120px
+    border-radius: 3px
+    overflow hidden
+    background-color: #fff
+    select
+        padding 5px 8px
+        width 100%
+        background-color: transparent;
+
+.image-contain
+    position relative
+    .deleteBtn
+        left 40%
+        line-height: 40px
+        position absolute
+        height 40px
+        width 80px
+        border 2px solid black
+        border-radius: 3px
+        color black
+        cursor pointer
+        trans(0.3s)
+        overflow hidden
+        &:hover
+            border 2px solid #e03e28
+            color #e03e28
+
+.editorImg
+    display inline-block
+    margin-bottom 10px
+    background-color: #999
+
+.control-btn
+    display flex
+    justify-content space-around
+    padding-bottom 10px
+
+
+
+
+
+    
+@keyframes scaleIn
+    0%
+        opacity 0
+        transform: scale(0);
+    100%
+        opacity 1
+        transform: scale(1);
+
+@keyframes scaleOut
+    0%
+        opacity 1
+        transform: scale(1);
+    100%
+        opacity 0
+        transform: scale(0);
