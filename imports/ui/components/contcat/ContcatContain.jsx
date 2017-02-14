@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { mailTransport } from '../../api/mail.js'
 import { Meteor } from 'meteor/meteor'
+import { Email } from 'meteor/email'
 
 
 
@@ -22,18 +23,21 @@ export default class ContcatContain extends Component {
     let { name, mail, subject, message } = this.state
    
     Meteor.call('sendEmail',
-      'Jay7396',
+      'jay7396@gmail.com',
       `${name} email: ${mail}`,
       subject,
-      message
+      `姓名: ${name} 
+email: ${mail} 
+訊息: ${message}`
     )
 
-    // this.setState({
-    //   name: "",
-    //   mail: "",
-    //   subject: "",
-    //   message: ""
-    // })
+
+    this.setState({
+      name: "",
+      mail: "",
+      subject: "",
+      message: ""
+    })
   }
   sendMessage(e){
     e.preventDefault();

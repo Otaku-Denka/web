@@ -51,7 +51,7 @@ class MainLayout extends Component {
               <div className="links" ref="navToggle" onClick={this.closeNav.bind(this)}>
                 <a href="/">首頁</a>
                 <a href="/gallery">攝影作品</a>
-                <a href="/contcat">聯絡我們</a>
+                <a href="/contcat">聯絡我</a>
                 <a href="/about">關於我</a>  
 
                 { (Meteor.user()) ? <RaisedButton label="登出" primary={true} 

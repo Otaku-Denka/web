@@ -66,6 +66,8 @@ class AlbumList extends Component {
             transitionName="cardLoad"
             transitionEnterTimeout={600}
             transitionLeaveTimeout={600}
+            transitionAppearTimeout={1500}
+            transitionAppear={true}
           >
             { (this.props.admin) ? <Editor /> : "" }
             { (Cards) ? Cards : <div>Loading . . .</div> }

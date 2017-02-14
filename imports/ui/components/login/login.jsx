@@ -70,13 +70,14 @@ export default class Login extends Component {
           /><br />
           
           <RaisedButton label="送出" primary={true}  onClick={this.login.bind(this)} />
-          
       </div>
     )
   }
 }
 
-      // <div className="contcat-container">
+
+          
+      //  <div className="contcat-container">
       //   <h2>註冊</h2>
       //   <TextField
       //     hintText="姓名"

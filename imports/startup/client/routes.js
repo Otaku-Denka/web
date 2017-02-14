@@ -10,6 +10,7 @@ import Root from '../../ui/components/root.jsx'
 import Upload from '../../ui/components/uploader/upload.jsx'
 import Albums from  '../../ui/api/album'
 import Login from '../../ui/components/login/login.jsx'
+import About from '../../ui/components/about/about.jsx'
 
 
 
@@ -69,14 +70,14 @@ FlowRouter.route('/admin/upload',{
   }
 })
 
-// FlowRouter.route('/admin',{
-//   action(params){
-//     mount(Root, {
-//     content: (<AlbumList />),
-//     footer: (<Footer />)
-//     })
-//   }
-// })
+FlowRouter.route('/about',{
+  action(params){
+    mount(Root, {
+    content: (<About />),
+    footer: (<Footer />)
+    })
+  }
+})
 
 FlowRouter.route('/admin/gallery/:id',{
   action(params){

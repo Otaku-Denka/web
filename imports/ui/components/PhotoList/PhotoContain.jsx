@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import PhotoHeader from './PhotoHeader'
 import PhotoList from './PhotoList'
+import SlideList from './slideList'
 import { createContainer } from 'meteor/react-meteor-data';
 import CircularProgress from 'material-ui/CircularProgress';
 import { Albums } from '../../api/album.js'
 import { Images } from '../../api/file.js'
+import { SlideLists } from '../../api/slide.js'
 import { Meteor } from 'meteor/meteor';
 
 
@@ -24,6 +26,7 @@ class PhotoContain extends Component {
     }
   }
   
+
   deleteImg(id){
     const that = this
     let data = Albums.findOne(this.props._id).photo
@@ -61,7 +64,7 @@ class PhotoContain extends Component {
         that.setState({
           loading: false
         })
-        // FlowRouter.go('/gallery')
+        FlowRouter.go('/gallery')
       }
     })
   }
@@ -82,6 +85,7 @@ class PhotoContain extends Component {
       let { title, summary, date, photo, titleImg} = album
       return (
       <div className="photo-contain">
+        { ( admin ) ? <SlideList img={this.props.slideList}/> : ""}
         <PhotoHeader title={title} summary={summary} meta={date} admin={admin} onClick={this.deleteAlbum.bind(this)}/>
         { (this.state.loading ? <CircularProgress /> : "")}
         <PhotoList imgs={photo} admin={admin} onClick={this.deleteImg.bind(this)} 
@@ -105,11 +109,13 @@ PhotoContain.propTypes ={
 
 export default createContainer(({ _id }) => {
   const handle = Meteor.subscribe("albums");
+  const slideSubscribe = Meteor.subscribe('slideList');
   const list = Albums.findOne(_id)
   const exist = ! handle.ready() && list
   return {
     listLoading: ! handle.ready(),
-    album: list
+    album: list,
+    slideList: SlideLists.find().fetch()
   }
 }, PhotoContain )
 

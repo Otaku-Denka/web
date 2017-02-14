@@ -1,3 +1,11 @@
+// @import url(http://fonts.googleapis.com/earlyaccess/cwtexming.css);
+
+@font-face
+    font-family: 'cwTeXMing';
+    font-style: normal;
+    font-weight: 500;
+    src url(/cwTeXMing-zhonly.ttf)
+
 normalize-css()
 
 trans($sec = 1s)
@@ -66,7 +74,7 @@ html
 body
     background light-grey
     // padding: 70px 0 150px
-    font-family: 'Open Sans', sans-serif
+    font-family:'cwTeXMing', serif;
 
 
 // Main nav
@@ -125,7 +133,7 @@ header
         overflow:hidden;
 .active
     display:block
-    height 240px
+    height 236px
     
 
 
@@ -292,12 +300,20 @@ header
 
 .cardLoad-enter {
     opacity: 0
+    // animation: scaleIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
+}
+
+.cardLoad-enter.cardLoad-enter-active {
     animation: scaleIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
 }
 
 .cardLoad-leave {
-    animation: scaleOut 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
+    // animation: scaleOut 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
     opacity: 1.0
+}
+
+.cardLoad-leave.cardLoad-leave-active {
+    animation: scaleOut 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
 }
     
 .card    
@@ -434,9 +450,13 @@ header
     width 100%
     > span
         display: flex
+        margin-left 40px
         justify-content flex-start
+        +below($med)
+            margin-left 20px
     > p
         margin 30px 0px
+        font-size 1.3em
 .gallery 
     margin-top 10px
     margin-bottom 60px
@@ -445,18 +465,75 @@ header
     column-count: auto
     img
         width 320
-
+        +below(740px)
+            width 100%
 .photo
     width 320px
     margin-bottom 10px
 
-//
+//contact me
 
 .contcat-container
     lost-center 80%
     margin-top 80px
     margin-bottom 60px
     text-align center
+
+// about me
+.about-container
+    margin-top 80px
+    margin-bottom 80px
+    text-align: center
+    lost-center 85%
+    shadow-level(5)
+    +below($med)
+        lost-center 95%
+
+.about-detail
+    font-size 1.5em
+    line-height: 2em
+    padding 10px 10px 0px 10px
+    +below($large)
+        font-size 1.2em
+        line-height: 1.5em
+
+.about-img
+    margin 10px
+    shadow-level(4)
+    right 10px
+    width 95%
+    height 100%
+
+.about-header
+    margin-top -70px
+    background: linear-gradient(to bottom, #336699, #003366)
+    color #CCCCCC
+    height 200px
+    text-align: center
+    +below($large)
+        height 150px
+    > h1
+        padding-top 90px
+        +below($large)
+            font-size 1.5em
+        
+
+      
+
+
+
+.aboutAnimation-appear {
+    opacity: 0.1;
+}
+
+
+
+.aboutAnimation-appear.aboutAnimation-appear-active {
+    // animation: scaleIn 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)
+    opacity 1
+    transition: all 0.6s ease-in 
+}
+
 
 //  admin
 
@@ -507,7 +584,20 @@ header
     justify-content space-around
     padding-bottom 10px
 
+.slider-container
+    margin-top 20px
+    height: 250px
+    display inline-flex
+    overflow:scroll
 
+.sliderImg
+    height 200px
+
+.slider
+    height: 300px
+    display inline-flex
+    flex-direction column
+    margin-right 10px
 
 
 

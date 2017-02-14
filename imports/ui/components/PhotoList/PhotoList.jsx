@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Lightbox from 'react-images'
 import RaisedButton from 'material-ui/RaisedButton';
+import { SlideLists } from '../../api/slide.js'
 
 
 class PhotoList extends Component {
@@ -52,9 +53,19 @@ class PhotoList extends Component {
 		this.gotoNext();
 	}
 
+  setSlideList(img){
+    SlideLists.insert({
+      image: img
+    },function(err, result){
+      if(err){
+        console.log(err)
+      } 
+    })
+  }
+
 
   renderGallery(){
-    let { imgs, admin, onClick, setTitle, titleImg } = this.props
+    let { imgs, admin, onClick, setTitle, titleImg} = this.props
 
     
     const gallery = imgs.map((img, i) => {
@@ -73,7 +84,13 @@ class PhotoList extends Component {
               }} 
                 disabled={( img === titleImg )}
               />
-              <RaisedButton label="首頁輪播" primary={true} />
+              <RaisedButton label="首頁輪播" onClick = {
+                (e) => {
+                  e.preventDefault();
+                  this.setSlideList(img)
+                }
+              } 
+              primary={true} />
               <RaisedButton label="刪除" secondary={true} onClick={function(e){
                 e.preventDefault();
                 onClick(img)

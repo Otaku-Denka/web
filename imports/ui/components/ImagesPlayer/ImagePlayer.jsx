@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import Slide from './slide'
 import SlideController from './SlideControler'
-
-const imgsArray = [
-  "/imgs/1.jpg",
-  "/imgs/2.jpg",
-  "/imgs/3.jpg"
-]
+import { createContainer } from 'meteor/react-meteor-data';
+import { SlideLists } from '../../api/slide.js'
 
 
-export default class ImagesPlayer extends Component {
+
+class ImagesPlayer extends Component {
   constructor(){
     super();
     this.state ={
@@ -18,10 +15,8 @@ export default class ImagesPlayer extends Component {
   }
 
   componentDidMount () {
-    console.log('did mount')
     this.interval = setInterval(() => {
       const imgsLength = imgs.length;
-      console.log('interval')
       if( this.state.currImg >= imgsLength -1 ){ 
         this.setState({currImg: 0})
         return
@@ -31,7 +26,6 @@ export default class ImagesPlayer extends Component {
   }
 
   componentWillUnmount() {
-    console.log('will unmount')
     this.interval && clearInterval(this.interval);
     this.interval = false;
   }
@@ -46,7 +40,6 @@ export default class ImagesPlayer extends Component {
     e.preventDefault();
     this.interval && clearInterval(this.interval)
     this.interval = setInterval(() => {
-      console.log('start play interval')
       const imgsLength = imgs.length;
       if( this.state.currImg >= imgsLength -1 ){ 
         this.setState({currImg: 0})
@@ -80,8 +73,9 @@ export default class ImagesPlayer extends Component {
 
   
   render(){
-    imgs = imgsArray.map((img, index) => {
-    return <Slide img={img} index={index} key={index} currImg={this.state.currImg}/>
+    const { slideList } = this.props
+    imgs = slideList.map((img, index) => {
+    return <Slide img={`/upload/${img.image}.jpg`} index={index} key={index} currImg={this.state.currImg}/>
     })
     return (
       <div className="images-player" 
@@ -92,7 +86,7 @@ export default class ImagesPlayer extends Component {
           <SlideController 
             slideBack = { this.slideBack.bind(this) }
             slideNext = { this.slideNext.bind(this) }
-            slideTotal = { imgsArray.length }
+            slideTotal = { slideList.length }
             currImg = { this.state.currImg}
           />
       </div>
@@ -100,3 +94,9 @@ export default class ImagesPlayer extends Component {
   }
 } 
 
+export default createContainer(()=>{
+  const handle = Meteor.subscribe("slideList");
+  return {
+    slideList: SlideLists.find().fetch()
+  }
+}, ImagesPlayer)
