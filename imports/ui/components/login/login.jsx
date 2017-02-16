@@ -70,6 +70,29 @@ export default class Login extends Component {
           /><br />
           
           <RaisedButton label="送出" primary={true}  onClick={this.login.bind(this)} />
+          
+                 <div className="contcat-container">
+        <h2>註冊</h2>
+        <TextField
+          hintText="姓名"
+          ref="name"
+        /><br />
+
+        <TextField
+          hintText="信箱"
+          ref="email"
+        /><br />
+
+        <TextField
+          hintText="密碼"
+          type="password"
+          ref="pass"
+        /><br />
+        
+        <RaisedButton label="送出" primary={true}  onClick={this.signUp.bind(this)} />
+      </div>
+          
+          
       </div>
     )
   }
@@ -77,23 +100,4 @@ export default class Login extends Component {
 
 
           
-      //  <div className="contcat-container">
-      //   <h2>註冊</h2>
-      //   <TextField
-      //     hintText="姓名"
-      //     ref="name"
-      //   /><br />
 
-      //   <TextField
-      //     hintText="信箱"
-      //     ref="email"
-      //   /><br />
-
-      //   <TextField
-      //     hintText="密碼"
-      //     type="password"
-      //     ref="pass"
-      //   /><br />
-        
-      //   <RaisedButton label="送出" primary={true}  onClick={this.signUp.bind(this)} />
-      // </div>

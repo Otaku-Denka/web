@@ -23,7 +23,7 @@ export default class ContcatContain extends Component {
     let { name, mail, subject, message } = this.state
    
     Meteor.call('sendEmail',
-      'jay7396@gmail.com',
+      'coffee7365@gmail.com',
       `${name} email: ${mail}`,
       subject,
       `姓名: ${name} 

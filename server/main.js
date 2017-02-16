@@ -4,9 +4,9 @@ import '../imports/ui/api/album'
 import '../imports/ui/api/slide'
 import '../imports/ui/api/mail'
 
-process.env.MAIL_URL = 'smtp://jay7396:akgeto0g2@smtp.gmail.com:587'
+process.env.MAIL_URL = 'smtp://miyavi7365:toto7365@smtp.gmail.com:587'
 
 
 Meteor.startup(() => {
-  
+
 });
